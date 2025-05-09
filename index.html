@@ -1,300 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Man and Woman Health Club</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALLZONE - Online Marketplace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        header {
+            background-color: #512DA8;
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            padding: 0 10px;
+        }
 
-    .navbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: #1a1a1a;
-      border-bottom: 1px solid #333;
-    }
+        .search-container input {
+            padding: 8px;
+            width: 70%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-    .logo img {
-      max-height: 80px;
-    }
+        .search-container button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            border: none;
+            background-color: #FFD700;
+            color: #512DA8;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .nav-links a {
-      color: #bbb;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            display: block;
+            cursor: pointer;
+        }
 
-    .nav-links a:hover {
-      color: #ff5252;
-    }
+        nav ul li a:hover {
+            color: #FFD700;
+        }
 
-    .hero {
-      background-color: #121212;
-      padding: 100px 20px 80px;
-      text-align: center;
-    }
+        .home-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-    .hero-content h1 {
-      font-size: 28px; /* Smaller font size */
-      color: #fff;
-    }
+        .item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    .hero-content p {
-      font-size: 18px;
-      color: #aaa;
-      margin-top: 10px;
-    }
+        .item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
 
-    .btn {
-      margin-top: 20px;
-      background-color: #ff5252;
-      color: white;
-      padding: 12px 30px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
+        .price {
+            font-weight: bold;
+            color: #28A745;
+        }
 
-    .btn:hover {
-      background-color: #e53935;
-    }
+        .buy-button {
+            background-color: #FFD700;
+            color: #000;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
 
-    .urgent-btn {
-      background-color: #ff0000;
-      color: white;
-      padding: 16px 40px;
-      font-size: 14px;  /* Smaller font size */
-      border-radius: 10px;
-      font-weight: 900;
-      animation: pulse 1.2s infinite;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
-      transition: transform 0.2s ease-in-out;
-    }
+        .buy-button:hover {
+            background-color: #e0c200;
+        }
 
-    .urgent-btn:hover {
-      background-color: #cc0000;
-      transform: scale(1.08);
-    }
+        footer {
+            background-color: #512DA8;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-      50% { box-shadow: 0 0 20px rgba(255, 0, 0, 1); }
-      100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-    }
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
 
-    .section {
-      padding: 60px 20px;
-      text-align: center;
-      background-color: #1a1a1a;
-      border-top: 1px solid #333;
-    }
+        @media (min-width: 768px) {
+            .search-container input {
+                width: 300px;
+            }
 
-    .section h2 {
-      font-size: 28px;
-      color: #ff5252;
-      margin-bottom: 20px;
-    }
-
-    .gallery-grid, .shop-items {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .gallery-grid img, .shop-items img {
-      width: 100%;
-      max-width: 200px;
-      border-radius: 10px;
-    }
-
-    .item {
-      background-color: #333;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-      text-align: center;
-      max-width: 220px;
-    }
-
-    .item h3 {
-      margin-bottom: 10px;
-    }
-
-    .whatsapp-btn {
-      display: inline-block;
-      margin-top: 20px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    form input, form select, form button {
-      display: block;
-      width: 100%;
-      max-width: 400px;
-      margin: 10px auto;
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      background-color: #333;
-      color: #fff;
-    }
-
-    form button {
-      background-color: #ff5252;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    form button:hover {
-      background-color: #e53935;
-    }
-
-    footer {
-      background-color: #121212;
-      text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: 14px;
-      border-top: 1px solid #333;
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 24px; /* Further smaller font size for mobile */
-      }
-
-      .hero-content p {
-        font-size: 16px;
-      }
-
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-      }
-    }
-  </style>
+            nav ul {
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="hero">
-    <nav class="navbar">
-      <div class="logo">
-        <img src="Gym logo.jpg" alt="Gym Logo" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="hero-content">
-      <h1>Welcome to Man and Woman Health Club</h1>
-      <p>Push Your Limits With Us</p>
-      <div style="margin-top: 60px;">
-        <a href="#register" class="btn urgent-btn">Join Now – Only Few Seats Left!</a>
-      </div>
-    </div>
-  </header>
+    <header>
+        <h1>ALLZONE</h1>
+        <nav>
+            <ul>
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('pet pooja')">Pet pooja</a></li>
+                <li><a onclick="showSection('designhub')">Design Hub</a></li>
+                <li><a onclick="showSection('fashion-accessories')">Men Fashion</a></li>
+                <li><a onclick="showSection('Woman-Fashion')">Women Fashion</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search..." oninput="filterItems()">
+            <button onclick="filterItems()">Search</button>
+        </div>
+    </header>
 
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>We are committed to helping you transform your body and mind with top-notch equipment, experienced trainers, and unmatched motivation.</p>
-  </section>
+    <section id="home" class="home-items">
+        <div class="item">
+            <img src="Poster.png" alt="Welcome">
+            <h3>Welcome to ALLZONE</h3>
+            <p class="price">Explore amazing products and deals!</p>
+        </div>
+    </section>
 
-  <section id="gallery" class="section">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <img src="First photo (2).png" alt="Gym photo" />
-      <img src="First photo (1).png" alt="Workout" />
-    </div>
-  </section>
+    <section id="food" class="home-items"></section>
 
-  <section id="shop" class="section">
-    <h2>Shop</h2>
-    <div class="shop-items">
-      <div class="item">
-        <img src="protin powder.jpeg" alt="Protin Powder" />
-        <h3>Protein Powder</h3>
-        <p>1200 Rupees</p>
-      </div>
-      <div class="item">
-        <img src="gym clothes.png" alt="Gym Clothes" />
-        <h3>Gym t-shirt</h3>
-        <p>400 Rupees</p>
-      </div>
-    </div>
-  </section>
+    <section id="designhub" class="home-items">
+        <div class="item">
+            <img src="AR logo.jpeg" alt="Logo Design">
+            <h3>Logo Design</h3>
+            <p class="price">₹450</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Logo%20Design" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Website.png" alt="Website Making">
+            <h3>Website Making</h3>
+            <p class="price">₹3900</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Website%20Making" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+         <div class="item">
+            <img src="car.png" alt="Car Animation">
+            <h3>Car Animation</h3>
+            <p class="price">₹5500</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Website%20Making" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+          <div class="item">
+             <video width="250" height="350" controls>
+    <source src="New one .mp4" type="video/mp4">
+        </div>
+    </section>
 
-  <section id="register" class="section">
-    <h2>Online Registration</h2>
-    <form id="registration-form">
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email" required />
-      <input type="tel" placeholder="Phone Number" required />
-      <select>
-        <option value="monthly">Monthly Plan</option>
-        <option value="yearly">Yearly Plan</option>
-      </select>
-      <button type="submit">Register</button>
-    </form>
-  </section>
+    <section id="pet pooja" class="home-items">
+        <div class="item">
+            <img src="manchuriyan.jpg" alt="manchuriyan">
+            <h3>Manchuriyan</h3>
+            <p class="price">₹75</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Burger.jpeg" alt="Burger">
+            <h3>Burger</h3>
+            <p class="price">₹55</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="chawmin.webp" alt="Chawmin">
+            <h3>Chawmin</h3>
+            <p class="price">₹60</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Chicken Biryani.jpeg" alt="Chicken Biryani">
+            <h3>Chicken Biryani</h3>
+            <p class="price">₹155</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Chicken Roll.jpg" alt="Chicken Roll">
+            <h3>Chicken Roll</h3>
+            <p class="price">₹95</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Chicken Thali.jpeg" alt="Chicken Thali">
+            <h3>Chicken Thali</h3>
+            <p class="price">₹120</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Egg Roll.jpeg" alt="Egg Roll">
+            <h3>Egg Roll</h3>
+            <p class="price">₹69</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Egg Thali.avif" alt="Egg Thali">
+            <h3>Egg Thali</h3>
+            <p class="price">₹99</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Egg-Biryani.jpg" alt="Egg Biryani">
+            <h3>Egg Biryani</h3>
+            <p class="price">₹105</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Fish Thali.jpeg" alt="Fish Thali">
+            <h3>Fish Thali</h3>
+            <p class="price">₹109</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Gulab Jamun.jpeg" alt="Gulab Jamun">
+            <h3>Gulab Jamun</h3>
+            <p class="price">₹300 kg</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Jelebi.jpeg" alt="Jelebi">
+            <h3>Jelebi</h3>
+            <p class="price">₹160 kg</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Momos.jpg" alt="Momos">
+            <h3>Momos</h3>
+            <p class="price">₹65</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Paneer roll.jpg" alt="Paneer Roll">
+            <h3>Paneer Roll</h3>
+            <p class="price">₹69</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Paratha.jpg" alt="Paratha">
+            <h3>Paratha 5</h3>
+            <p class="price">₹75</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Pav Bhaji.jpg" alt="Pav Bhaji">
+            <h3>Pav Bhaji 2</h3>
+            <p class="price">₹65</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Pizza.jpeg" alt="Pizza">
+            <h3>Pizza</h3>
+            <p class="price">₹129</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="samosa.jpeg" alt="Samosa">
+            <h3>Samosa 5</h3>
+            <p class="price">₹70</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Veg roll.jpeg" alt="Veg Roll">
+            <h3>Veg Roll</h3>
+            <p class="price">₹55</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Veg Thali.jpeg" alt="Veg Thali">
+            <h3>Veg Thali</h3>
+            <p class="price">₹65</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Handmade%20Craft" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+    </section>
 
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Address: Chandmari road, Kankarbagh, Patna</p>
-    <p>Email: info@healthclub.com</p>
-    <p>Phone: +91 7667835060</p>
-    <a href="https://wa.me/917667835060" class="whatsapp-btn" target="_blank">
-      <i class="fab fa-whatsapp"></i> Chat with us
-    </a>
-    <div style="margin-top: 20px;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28760.032133792343!2d85.145102127579!3d25.59153127082774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5847de7d3e2f%3A0x533493b9c476f5ab!2sKankarbagh%2C%20Patna%2C%20Bihar%20800020!5e0!3m2!1sen!2sin!4v1713532442220!5m2!1sen!2sin" width="100%" height="300" style="border:0; border-radius: 12px; margin-top: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </section>
+    <section id="fashion-accessories" class="home-items">
+        <div class="item">
+            <img src="White shirt.webp" alt="Shirt">
+            <h3>Stylish Shirt</h3>
+            <p class="price">₹350</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Black pent.jpg" alt="Black pent">
+            <h3>Black pent</h3>
+            <p class="price">₹320</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Men Slipper.webp" alt="Men Slipper">
+            <h3>Men Slipper</h3>
+            <p class="price">₹210</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Shirt for men.webp" alt="Shirt For Men">
+            <h3>Shirt for men </h3>
+            <p class="price">₹199</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Black Shirt.webp" alt="Black Shirt">
+            <h3>Black Shirt</h3>
+            <p class="price">₹329</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Printed Half Shirt.webp" alt="Printed Shirt">
+            <h3>Printed Half Shirt</h3>
+            <p class="price">₹209</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Mens Solid Polo T-shirt.webp" alt="Polo T-shirt">
+            <h3>Mens Solid Polo T-shirt</h3>
+            <p class="price">₹269</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Solid Polyester t-shirt.webp" alt="Solid Polyester t-shirt">
+            <h3>Solid Polyester t-shirt</h3>
+            <p class="price">₹219</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Innerwear Vests  pack of (2).webp" alt="Vests">
+            <h3>Innerwear Vests 90cm pack of (2) </h3>
+            <p class="price">₹209</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Priented Black T-shirt.webp" alt="Printed T-Shirt">
+            <h3>Printed Black T-shirt</h3>
+            <p class="price">₹224</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Stylish Shirt.webp" alt="Shirt">
+            <h3>Stylish Shirt</h3>
+            <p class="price">₹359</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Summer Wear T-shirt and Shorts.webp" alt="Summer">
+            <h3>Summer Wear T-shirt And Shorts</h3>
+            <p class="price">₹320</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="track pents.webp" alt="Track pents">
+            <h3>Track pents</h3>
+            <p class="price">₹265</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Black Kurta.webp" alt="Black Kurta">
+            <h3>Black Kurta</h3>
+            <p class="price">₹529</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Green Kurta.webp" alt="Green Kurta">
+            <h3>Green Kurta</h3>
+            <p class="price">₹529</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Blue Kurta.webp" alt="Blue Kurta">
+            <h3>Blue Kurta</h3>
+            <p class="price">₹529</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Purple Kurta.webp" alt="Purple Kurta">
+            <h3>Purple Kurta</h3>
+            <p class="price">₹529</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Red Kurta.webp" alt="Red Kurta">
+            <h3>Red Kurta</h3>
+            <p class="price">₹419</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Simple Blue Kurta.webp" alt="Simple Blue Kurta">
+            <h3>Blue Kurta</h3>
+            <p class="price">₹309</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Mens Fancy kurta.webp" alt="Men Fancy kurta">
+            <h3>Men Fancy kurta</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Kurta for men.webp" alt="Kurta for men">
+            <h3>Kurta for men</h3>
+            <p class="price">₹419</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Kurta With Payjama.webp" alt="Kurta Payjama">
+            <h3>Kurta With Payjama</h3>
+            <p class="price">₹550</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Pink Kurta With Payjama.webp" alt="Pink kurta">
+            <h3>Pink Kurta With Payjama</h3>
+            <p class="price">₹550</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Black Kurta With Payjama.webp" alt="Black Kurta">
+            <h3>Black Kurta With Payjama</h3>
+            <p class="price">₹550</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Red Kurta with payjama.webp" alt="Red Kurta">
+            <h3>Printed Half Shirt</h3>
+            <p class="price">₹550</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Baggy Jeans.webp" alt="Jeans">
+            <h3>Baggy Jeans</h3>
+            <p class="price">700</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Black Baggy jeans.webp" alt="Black Baggy jeans">
+            <h3>Black Baggy Jeans </h3>
+            <p class="price">₹620</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Cargo pent new.webp" alt="cargo pent">
+            <h3>cargo pent</h3>
+            <p class="price">₹500</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Stylish cargo pent new.webp" alt="cargo pent">
+            <h3>Stylish cargo pent </h3>
+            <p class="price">₹439</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Trendy%20Sunglasses" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+    </section>
+    <section id="Woman-Fashion" class="home-items">
+        <div class="item">
+            <img src="Woman Black Kurti.webp" alt="Kurti">
+            <h3>Woman Black Kurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Green Kurti.webp" alt="Kurti">
+            <h3>Woman greenKurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Blue Kurti.webp" alt="Kurti">
+            <h3>Woman Blue Kurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Red Kurti.webp" alt="Kurti">
+            <h3>Woman red Kurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Purple Kurti.webp" alt="Kurti">
+            <h3>Woman Purple Kurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="New Purple.webp" alt="Kurti">
+            <h3>Woman Purple Kurti</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="New Black.webp" alt="Kurti">
+            <h3>Woman Black Kurti</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="New green.webp" alt="Kurti">
+            <h3>Woman Green Kurti</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="New Purple.webp" alt="Kurti">
+            <h3>Woman Purple Kurti</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="New Blue.webp" alt="Kurti">
+            <h3>Woman Blue Kurti</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Tiger kurti.webp" alt="Kurti">
+            <h3>New Kurti</h3>
+            <p class="price">₹265</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="kurties.webp" alt="Kurti">
+            <h3>New Kurti</h3>
+            <p class="price">₹325</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Red one.webp" alt="Kurti">
+            <h3>Stylish Kurti</h3>
+            <p class="price">₹319</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Gwon.webp" alt="Gwon">
+            <h3>Girls Gwon</h3>
+            <p class="price">₹289</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Neck top.webp" alt="top">
+            <h3>Neck Top</h3>
+            <p class="price">₹295</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Top.webp" alt="Top">
+            <h3>Girls Top</h3>
+            <p class="price">₹293</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Blue one Kurties.webp" alt="Kurti">
+            <h3>Stylish Kurti</h3>
+            <p class="price">₹309</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Trending Priented Kurta.webp" alt="Kurti">
+            <h3>Trending Priented Kurta</h3>
+            <p class="price">₹286</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Short kurta.webp" alt="Kurti">
+            <h3>Short Kurta</h3>
+            <p class="price">₹225</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Pink Bag.webp" alt="Bag">
+            <h3>Pink Bag</h3>
+            <p class="price">₹339</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="baby bag.webp" alt="Bag">
+            <h3>Baby Bag</h3>
+            <p class="price">₹189</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="new Kurties.webp" alt="Kurti">
+            <h3>Stylish Kurti</h3>
+            <p class="price">₹306</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Boot.webp" alt="Boot">
+            <h3>Stylish Boot</h3>
+            <p class="price">₹450</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="pink boot.webp" alt="boot">
+            <h3>Stylish boot</h3>
+            <p class="price">₹345</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="open Back Bellies.webp" alt="sendle">
+            <h3>Open back Bellies </h3>
+            <p class="price">₹225</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+        <div class="item">
+            <img src="Sky Fuli.webp" alt="Fuli">
+            <h3>sky fuli</h3>
+            <p class="price">₹185</p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20Stylish%20Shirt" target="_blank">
+                <button class="buy-button">Buy Now</button>
+            </a>
+        </div>
+    <footer>
+        <p><strong>Contact us:</strong> +91 7667835060 | <a href="mailto:piyushallzone@gmail.com">piyushallzone@gmail.com</a></p>
+        <p><strong>Address:</strong> Kankarbagh, Patna, Bihar - 800020</p>
+        <p>
+            <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20order%20something%20from%20ALLZONE" 
+               target="_blank" 
+               style="display:inline-block; margin-top:10px; background-color:#25D366; color:white; padding:10px 15px; border-radius:5px;">
+                Order on WhatsApp
+            </a>
+        </p>
+        <p style="margin-top:15px;">&copy; 2025 ALLZONE Marketplace. All rights reserved.</p>
+    </footer>
 
-  <footer>
-    <p>&copy; 2025 Man and Woman Health Club. All rights reserved.</p>
-  </footer>
+    <script>
+        function filterItems() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.home-items');
+
+            sections.forEach(section => {
+                let matchFound = false;
+                const items = section.querySelectorAll('.item');
+                items.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    const matches = itemText.includes(query);
+                    item.style.display = matches || query === '' ? 'block' : 'none';
+                    if (query === '' || matches) matchFound = true;
+                });
+                section.style.display = matchFound ? 'grid' : 'none';
+            });
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.home-items');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'grid';
+        }
+
+        const foodSection = document.getElementById("food");
+        const foodItems = [
+            
+        ];
+
+        foodItems.forEach(item => {
+            const price = Math.floor(Math.random() * 150) + 50;
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.innerHTML = `
+                <img src="https://source.unsplash.com/160x100/?${encodeURIComponent(item)},food" alt="${item}">
+                <h3>${item}</h3>
+                <p class="price">₹${price}</p>
+                <a href="https://wa.me/917667835060?text=Hi%20I%20want%20to%20buy%20${encodeURIComponent(item)}" target="_blank">
+                    <button class="buy-button">Buy Now</button>
+                </a>
+            `;
+            foodSection.appendChild(div);
+        });
+    </script>
 </body>
 </html>
